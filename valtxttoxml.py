@@ -4,9 +4,9 @@ import os
 import random
 import time
 import cv2
-kaynakklasor='train_detect/labels/'
-hedefklasor='train_detect/labels/'
-resimklasör='train_detect/images/'
+kaynakklasor='val_detect/labels/'
+hedefklasor='val_detect/labels/'
+resimklasör='val_detect/images/'
 dosyalistesi=list(glob.glob(kaynakklasor+'*.txt'))
 dosyasayisi=len(dosyalistesi)-1
 for file in list(glob.glob(kaynakklasor+"*.txt")):
@@ -27,7 +27,7 @@ for file in list(glob.glob(kaynakklasor+"*.txt")):
  height, width, channels = img.shape
  #print(height, width, channels)
  annotation = ET.Element("annotation")
- ET.SubElement(annotation, "folder").text = "train"
+ ET.SubElement(annotation, "folder").text = "val"
  ET.SubElement(annotation, "filename").text = str(resimadi)
  ET.SubElement(annotation, "path").text = str(resimklasör+resimadi)
  source = ET.SubElement(annotation, "source")
@@ -59,6 +59,6 @@ for file in list(glob.glob(kaynakklasor+"*.txt")):
   ET.SubElement(bndbox, "ymax").text = str(y2)
  tree = ET.ElementTree(annotation)
  #tree.write("train/"+dosyaAdi+".xml",encoding="UTF-8",xml_declaration=True)
- tree.write("train/"+dosyaAdi+".xml")
+ tree.write("val/"+dosyaAdi+".xml")
 
 
